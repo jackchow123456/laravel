@@ -4,24 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+use Request;
 
 class LoginController extends Controller
 {
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/';
-
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-//        $this->middleware('auth');
-    }
+    protected $redirectTo = '/admin';
 
     /**
      * Show the application dashboard.
@@ -47,4 +38,16 @@ class LoginController extends Controller
     {
         return Auth::guard('admin');
     }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        $this->guard()->logout();
+        return  redirect('/admin');
+    }
+
 }
