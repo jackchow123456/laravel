@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Request;
+use Mail;
 
 class LoginController extends Controller
 {
@@ -26,6 +27,13 @@ class LoginController extends Controller
 
     protected function showLoginForm()
     {
+        $name = '我发的第一份邮件';
+        // Mail::send()的返回值为空，所以可以其他方法进行判断
+        Mail::raw('你好，我是PHP程序！', function ($message) {
+            $to = '1041224389@qq.com';
+            $message ->to($to)->subject('纯文本信息邮件测试');
+        });
+
         return view('admin.auth.login');
     }
 
