@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Artisan;
 
 class Kernel extends ConsoleKernel
 {
@@ -38,5 +39,18 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+        Artisan::command('test', function () {
+            $users = \App\Model\User::all();
+
+            $bar = $this->output->createProgressBar(count($users));
+            foreach ($users as $user) {
+                //$this->performTask($user);
+                sleep(3); // 模拟任务执行
+                $bar->advance();
+            }
+
+            $bar->finish();
+            $this->info('task finished!');
+        });
     }
 }
