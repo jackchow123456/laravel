@@ -18,6 +18,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\Login' => [
+            'App\Listeners\SendLoginEmail',// 发送电子邮件
+            'App\Listeners\SendLoginSms', // 发送短信
+            'App\Listeners\SendLoginMessage', // 发送站内信
+        ],
     ];
 
     /**
