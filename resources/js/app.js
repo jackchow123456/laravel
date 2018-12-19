@@ -34,13 +34,13 @@ const app = new Vue({
         Echo.join(`login`)
             .here((users) => {
                 //
-                console.log('jack')
+                // console.log(users)
             })
             .joining((user) => {
-                console.log(user.name);
+                console.log(user);
             })
             .leaving((user) => {
-                console.log(user.name);
+                console.log(user);
             });
     }
 });

@@ -15,6 +15,6 @@ Broadcast::channel('App.Model.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('chatroom', function ($user) {
+Broadcast::channel('login', function ($user) {
     return $user;
 });

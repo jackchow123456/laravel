@@ -9,14 +9,15 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Model\User;
 
 class Login implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use SerializesModels;
 
     public $user;
 
-    public function __construct($user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -28,7 +29,18 @@ class Login implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-//        return new PrivateChannel('chat.'.$this->user->id);
-        return new PresenceChannel('chatroom');
+        return new PresenceChannel('login');
+    }
+
+    //想更细粒度地控制广播数据:
+    public function broadcastWith()
+    {
+        return ['id' => $this->user->id];
+    }
+
+    //有时，想在给定条件为 true ，才广播事件:
+    public function broadcastWhen()
+    {
+        return $this->user->id > 8;
     }
 }
