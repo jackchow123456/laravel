@@ -29,5 +29,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    created(){
+        Echo.join(`login`)
+            .here((users) => {
+                //
+                console.log('jack')
+            })
+            .joining((user) => {
+                console.log(user.name);
+            })
+            .leaving((user) => {
+                console.log(user.name);
+            });
+    }
 });

@@ -27,11 +27,11 @@ class SendLoginEmail implements ShouldQueue
      */
     public function handle(Login $event)
     {
-        $user = $event->user;
-        if($user['email']){
-            Mail::raw('你好，我是Jack的网站！', function ($message) use($user) {
-                $message ->to($user['email'])->subject('你刚刚登陆了Jack的网站');
-            });
-        }
+//        $user = $event->user;
+//        if($user['email']){
+//            Mail::raw('你好，我是Jack的网站！', function ($message) use($user) {
+//                $message ->to($user['email'])->subject('你刚刚登陆了Jack的网站');
+//            });
+//        }
     }
 }

@@ -9,15 +9,14 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Model\User;
 
-class Login
+class Login implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
 
-    public function __construct(User $user)
+    public function __construct($user)
     {
         $this->user = $user;
     }
@@ -29,6 +28,7 @@ class Login
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('login');
+//        return new PrivateChannel('chat.'.$this->user->id);
+        return new PresenceChannel('chatroom');
     }
 }

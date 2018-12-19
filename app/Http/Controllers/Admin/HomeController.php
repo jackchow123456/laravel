@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        echo 'hello admin';
+//        Redis::set('name','jack');
+//        dd(Redis::get('name'));
         return view('admin.home');
     }
 }
