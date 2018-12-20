@@ -80,7 +80,7 @@ class LoginController extends Controller
         if ($this->attemptLogin($request)) {
 
             // 登陆事件分发
-//            event(new Login(Auth::user()));
+            event(new Login(Auth::user()));
 
             return $this->sendLoginResponse($request);
         }

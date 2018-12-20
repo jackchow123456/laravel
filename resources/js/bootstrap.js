@@ -55,9 +55,7 @@ if (token) {
 //     encrypted: true
 // });
 
-import Echo from "laravel-echo"
-
-window.Pusher = require('pusher-js');
+import Echo from 'laravel-echo'
 
 window.io = require('socket.io-client');
 

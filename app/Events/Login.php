@@ -13,7 +13,7 @@ use App\Model\User;
 
 class Login implements ShouldBroadcast
 {
-    use SerializesModels;
+    use Dispatchable, InteractsWithSockets,SerializesModels;
 
     public $user;
 
@@ -35,12 +35,8 @@ class Login implements ShouldBroadcast
     //想更细粒度地控制广播数据:
     public function broadcastWith()
     {
-        return ['id' => $this->user->id];
+        return ['id' => $this->user->id, 'name' => $this->user->name];
     }
 
-    //有时，想在给定条件为 true ，才广播事件:
-    public function broadcastWhen()
-    {
-        return $this->user->id > 8;
-    }
+
 }
